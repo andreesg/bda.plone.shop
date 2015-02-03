@@ -111,6 +111,10 @@
       <a href=""
          class="update_cart_item buyable_update_cart show_status_message"
          i18n:translate="update_cart">update cart</a>
+
+      <a href=""
+         class="buy_now_item buyable_update_cart show_status_message"
+         i18n:translate="buy_now">buy now</a>
     </tal:addable>
 
     <tal:not_addable condition="not:addable">
