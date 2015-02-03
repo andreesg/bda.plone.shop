@@ -1047,6 +1047,11 @@ msgstr "Text"
 msgid "update_cart"
 msgstr "update cart"
 
+#. Default: "buy now"
+#: ./browser/buyable.pt:115
+msgid "buy_now"
+msgstr "buy now"
+
 #. Default: "Vat"
 #: ./browser/buyable.pt:63
 msgid "vat"
