@@ -1048,9 +1048,14 @@ msgid "update_cart"
 msgstr "update cart"
 
 #. Default: "buy now"
-#: ./browser/buyable.pt:115
+#: ./browser/buyable.pt:120
 msgid "buy_now"
 msgstr "buy now"
+
+#. Default: "product unavailable"
+#: ./browser/buyable.pt:116
+msgid "product_unavailable"
+msgstr "product unavailable"
 
 #. Default: "Vat"
 #: ./browser/buyable.pt:63

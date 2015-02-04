@@ -104,7 +104,8 @@
           style="display: none;"
           tal:content="view/item_uid">12345678</span>
 
-    <tal:addable condition="addable">
+    <tal:addable condition="addable"
+      tal:define="signal string: ${view/availability_signal}">
       <a href=""
          class="add_cart_item buyable_add_to_cart show_status_message"
          i18n:translate="add_to_cart">add to cart</a>
@@ -113,8 +114,13 @@
          i18n:translate="update_cart">update cart</a>
 
       <a href=""
+         class="buy_now_item buyable_update_cart show_status_message unavailable"
+         i18n:translate="product_unavailable" tal:condition="python: signal != 'green'">product unavailable</a>
+
+      <a href=""
          class="buy_now_item buyable_update_cart show_status_message"
-         i18n:translate="buy_now">buy now</a>
+         i18n:translate="buy_now" tal:condition="python: signal != 'red'">buy now</a>
+
     </tal:addable>
 
     <tal:not_addable condition="not:addable">
