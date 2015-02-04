@@ -119,7 +119,7 @@
 
       <a href=""
          class="buy_now_item buyable_update_cart show_status_message"
-         i18n:translate="buy_now" tal:condition="python: signal != 'red'">buy now</a>
+         i18n:translate="buy_now" tal:condition="python: signal == 'green'">buy now</a>
 
     </tal:addable>
 
