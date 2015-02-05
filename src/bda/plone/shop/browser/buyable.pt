@@ -37,10 +37,10 @@
           <span tal:replace="python:'%0.2f' % price_original">1.00</span>
           <span tal:replace="view/currency">EUR</span>
         </dd>
-        <dd class="price discount">
+        <dd class="price discount"
+          tal:define="currency view/currency">
           <span tal:replace="python:'%0.2f' % view.item_net">1.00</span>
-          <span tal:replace="view/currency">EUR</span>
-          (<span i18n:translate="net">Net</span>)
+          <span tal:replace="python: '€' if currency == 'EUR' else currency">EUR</span>
         </dd>
       </tal:net>
 
