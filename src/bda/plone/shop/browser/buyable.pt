@@ -26,7 +26,6 @@
   </tal:info>
 
   <dl class="details">
-    <div class="item-price-details">
       <tal:info condition="view/can_view_buyable_info">
 
         <tal:net condition="not:view/display_gross"
@@ -69,9 +68,7 @@
         <dd class="vat" tal:content="string:${view/item_vat}%">20 %</dd>
 
       </tal:info>
-    </div>
 
-    <div class="order-details">
       <tal:buy condition="view/can_buy_items">
 
         <dt class="quantity" tal:content="view/quantity_unit">Quantity</dt>
@@ -137,7 +134,6 @@
         </tal:not_addable>
     
       </tal:buy>
-  </div>
   </dl>
 
 </div>
