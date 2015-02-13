@@ -135,8 +135,9 @@
           <span class="buyable_update_cart_disabled"
                 i18n:translate="update_cart">update cart</span>
         </tal:not_addable>
-    </div>
-  </tal:buy>
+    
+      </tal:buy>
+  </div>
   </dl>
 
 </div>
