@@ -48,19 +48,23 @@
         <tal:gross condition="view/display_gross"
                  define="price_original view/item_gross_original;
                          price view/item_gross">
+          
           <dt class="price" i18n:translate="price">Price</dt>
           
+
           <dd class="price original"
-              tal:define="currency view/currency"
+              tal:define="currency view/currency;
+                          curr python: '€' if currency == 'EUR' else currency;"
               tal:condition="python:view.not_eq(price_original, price)">
-            <h2><span tal:replace="python: '€' if currency == 'EUR' else currency">EUR</span>
-            <span tal:replace="python:'%0.2f' % price_original">1.0</span></h2> 
+            <h2><span tal:replace="python: '%s %0.2f' %(curr, price_original)"></span></h2>
           </dd>
 
           <dd class="price discount"
-            tal:define="currency view/currency">
-            <h2><span tal:replace="python: '€' if currency == 'EUR' else currency">EUR</span>
-            <span tal:replace="python:'%0.2f' % price">1.0</span></h2>
+            tal:define="currency view/currency;
+                        curr python: '€' if currency == 'EUR' else currency;
+                        final_price python: '%s %0.2f' %(curr, price)">
+            <h2><span tal:replace="final_price">EUR</span></h2>
+            <!--<span tal:replace="python:'%0.2f' % price">1.0</span>-->
           </dd>
         </tal:gross>
 
