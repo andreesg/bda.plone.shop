@@ -252,8 +252,14 @@ class CartDataProvider(CartItemCalculator, CartDataProviderBase):
             title = data.title
             discount_net = data.discount_net(count)
             price = (Decimal(str(data.net)) - discount_net) * count
+
+            ## Tickets
+            original_price = (Decimal(str(data.net)) - discount_net) * 1
+
             if data.display_gross:
                 price = price + price / Decimal(100) * Decimal(str(data.vat))
+                original_price = original_price + original_price / Decimal(100) * Decimal(str(data.vat))
+
             url = brain.getURL()
             description = brain.Description
             comment_required = data.comment_required
@@ -266,7 +272,7 @@ class CartDataProvider(CartItemCalculator, CartDataProviderBase):
             item = self.item(
                 uid, title, count, price, url, comment, description,
                 comment_required, quantity_unit_float, quantity_unit,
-                preview_image_url, no_longer_available, alert)
+                preview_image_url, no_longer_available, alert, original_price)
             ret.append(item)
         return ret
 
