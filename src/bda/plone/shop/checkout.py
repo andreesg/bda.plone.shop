@@ -30,5 +30,5 @@ class CheckoutSettings(object):
         return False
 
     def skip_payment_redirect_url(self, uid):
-        base = '%s/@@order_done?uid=%s'
+        base = '%s/@@mollie_payment_success?order_uid=%s'
         return base % (self.context.absolute_url(), uid)
