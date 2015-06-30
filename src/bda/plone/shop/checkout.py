@@ -7,6 +7,8 @@ from bda.plone.shop.utils import get_shop_payment_settings
 from zope.component import adapter
 from zope.interface import implementer
 from zope.interface import Interface
+from bda.plone.orders import interfaces as ifaces
+import transaction
 
 
 @implementer(ICheckoutSettings)
@@ -21,6 +23,7 @@ class CheckoutSettings(object):
         order_data = OrderData(self.context, uid=uid)
         # order total is 0, skip
         if not Decimal(str(order_data.total)).quantize(Decimal('1.000')):
+            order_data.order.attrs['salaried'] = ifaces.SALARIED_YES
             return True
         # if payment should be skipped if order contains reservations and
         # order contains reservations, skip
