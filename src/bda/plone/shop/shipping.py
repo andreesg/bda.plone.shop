@@ -203,6 +203,15 @@ class CashAndCarryShipping(Shipping):
         return Decimal('0')
 
 
+class PromotionShipping(DefaultShipping):
+    sid = 'promotion_shipping'
+    label = _('promotion_shipping', default='Gratis verzending')
+
+    @property
+    def description(self):
+        return _('promotion_shipping_label',
+                 default='Geldig t/m 31 december')
+
 ###############################################################################
 # B/C - will be removed in ``bda.plone.shop`` 1.0
 ###############################################################################
