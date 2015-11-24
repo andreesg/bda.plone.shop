@@ -70,8 +70,8 @@
         </tal:gross>
 
         
-        <!--<dt class="vat" i18n:translate="vat">Vat</dt>
-        <dd class="vat" tal:content="string:${view/item_vat}%">20 %</dd>-->
+        <dt class="vat" i18n:translate="">incl. btw</dt>
+        <!--<dd class="vat" tal:content="string:${view/item_vat}%">20 %</dd>-->
 
       </tal:info>
 
