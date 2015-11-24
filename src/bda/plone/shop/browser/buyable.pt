@@ -88,10 +88,10 @@
                                          'cart_item_count';"
                  tal:attributes="class css;
                                  disabled python: not addable and 'disabled' or None" />
-          <!--<div class="change">
+          <div class="change">
             <a href="javascript:;" onclick="updateQuantity('up');" class="up"><i class="fa fa-minus"></i></a>
             <a href="javascript:;" onclick="updateQuantity('down');" class="down">-</a>
-          </div>-->
+          </div>
 
         </dd>
 
