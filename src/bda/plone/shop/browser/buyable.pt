@@ -11,7 +11,7 @@
 
   <tal:info condition="view/can_view_buyable_info">
 
-    <div class="availability" tal:condition="view/show_available">
+    <!--<div class="availability" tal:condition="view/show_available">
       <strong i18n:translate="availability">Availability</strong>
       <div class="signal green"
            tal:attributes="class string:signal ${view/availability_signal}">
@@ -21,7 +21,7 @@
            tal:content="structure view/availability_details">
         deliverable until 1.1.2013
       </div>
-    </div>
+    </div>-->
 
   </tal:info>
 
@@ -31,13 +31,14 @@
         <tal:net condition="not:view/display_gross"
                  define="price_original view/item_net_original;
                          price view/item_net">
-          <dt class="price" i18n:translate="price">Price</dt>
+          <!--<dt class="price" i18n:translate="price">Price</dt>-->
           <dd class="price original"
               tal:define="currency view/currency"
               tal:condition="python:view.not_eq(price_original, price)">
             <h2><span tal:replace="python: '€' if currency == 'EUR' else currency">EUR</span>
             <span tal:replace="python:'%0.2f' % price_original">1.00</span></h2>
           </dd>
+
           <dd class="price discount"
             tal:define="currency view/currency">
             <h2><span tal:replace="python: '€' if currency == 'EUR' else currency">EUR</span>
@@ -49,7 +50,7 @@
                  define="price_original view/item_gross_original;
                          price view/item_gross">
           
-          <dt class="price" i18n:translate="price">Price</dt>
+          <!--<dt class="price" i18n:translate="price">Price</dt>-->
           
 
           <dd class="price original"
@@ -68,8 +69,9 @@
           </dd>
         </tal:gross>
 
-        <dt class="vat" i18n:translate="vat">Vat</dt>
-        <dd class="vat" tal:content="string:${view/item_vat}%">20 %</dd>
+        
+        <!--<dt class="vat" i18n:translate="vat">Vat</dt>
+        <dd class="vat" tal:content="string:${view/item_vat}%">20 %</dd>-->
 
       </tal:info>
 
@@ -86,6 +88,11 @@
                                          'cart_item_count';"
                  tal:attributes="class css;
                                  disabled python: not addable and 'disabled' or None" />
+          <!--<div class="change">
+            <a href="javascript:;" onclick="updateQuantity('up');" class="up"><i class="fa fa-minus"></i></a>
+            <a href="javascript:;" onclick="updateQuantity('down');" class="down">-</a>
+          </div>-->
+
         </dd>
 
         <tal:comment condition="view/comment_enabled">
