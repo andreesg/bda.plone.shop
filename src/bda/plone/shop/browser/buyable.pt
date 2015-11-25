@@ -77,23 +77,40 @@
 
       <tal:buy condition="view/can_buy_items">
 
-        <dt class="quantity" tal:content="view/quantity_unit">Quantity</dt>
-        <dd class="quantity">
-          <input type="text"
-                 size="2"
-                 value="1"
+        
+        
+
+
+          <div class="cart-select-box">
+          <select 
+                 
                  class="cart_item_count"
                  tal:define="css python: view.quantity_unit_float and \
                                          'cart_item_count quantity_unit_float' or
-                                         'cart_item_count';"
+                                         'cart_item_count cart_tickets form-control buyable-count';"
                  tal:attributes="class css;
-                                 disabled python: not addable and 'disabled' or None" />
-          <div class="change">
-            <a href="javascript:;" onclick="updateQuantity('up');" class="up"><i class="fa fa-minus"></i></a>
-            <a href="javascript:;" onclick="updateQuantity('down');" class="down">-</a>
-          </div>
+                                 disabled python: not addable and 'disabled' or None">
 
-        </dd>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+          
+          </select>
+        </div>
+
+        
 
         <tal:comment condition="view/comment_enabled">
           <dt class="extra_comment" i18n:translate="comment">Comment</dt>
