@@ -310,6 +310,7 @@ class CartItemState(CartItemStateBase):
 
     def alert(self, count):
         stock = get_item_stock(self.context)
+
         available = stock.available
         # no limitation
         if available is None:
