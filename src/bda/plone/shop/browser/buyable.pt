@@ -14,7 +14,8 @@
   </tal:info>
 
   <dl class="details">
-    <tal:info condition="view/can_view_buyable_info">
+      <tal:info condition="view/can_view_buyable_info">
+
         <tal:net condition="not:view/display_gross"
                  define="price_original view/item_net_original;
                          price view/item_net">
@@ -36,6 +37,9 @@
         <tal:gross condition="view/display_gross"
                  define="price_original view/item_gross_original;
                          price view/item_gross">
+          
+          
+
           <dd class="price original"
               tal:define="currency view/currency;
                           curr python: '€' if currency == 'EUR' else currency;"
@@ -52,67 +56,66 @@
           </dd>
         </tal:gross>
 
-        <dt class="vat" i18n:translate="">incl. btw</dt>
-
-    </tal:info>
-
-    <tal:buy condition="view/can_buy_items">
-
-      
-      <div class="cart-select-box">
-        <select 
-               
-               class="cart_item_count"
-               tal:define="css python: view.quantity_unit_float and \
-                                       'cart_item_count quantity_unit_float' or
-                                       'cart_item_count cart_tickets form-control buyable-count';"
-               tal:attributes="class css;
-                               disabled python: not addable and 'disabled' or None">
-
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
-              <option value="9">9</option>
-              <option value="10">10</option>
-              <option value="11">11</option>
-              <option value="12">12</option>
-              <option value="13">13</option>
-              <option value="14">14</option>
-              <option value="15">15</option>
         
-        </select>
-      </div>
+        <dt class="vat" i18n:translate="">incl. btw</dt>
+    
+      </tal:info>
 
-      <tal:comment condition="view/comment_enabled">
-        <dt class="extra_comment" i18n:translate="comment">Comment</dt>
-        <dd class="extra_comment">
-          <input type="text"
-                 size="20"
-                 value=""
-                 class="cart_item_comment"
-                 tal:define="css python: view.comment_required and \
-                                         'cart_item_comment required' or
-                                         'cart_item_comment';"
+      <tal:buy condition="view/can_buy_items">
+
+          <div class="cart-select-box">
+          <select 
+                 
+                 class="cart_item_count"
+                 tal:define="css python: view.quantity_unit_float and \
+                                         'cart_item_count quantity_unit_float' or
+                                         'cart_item_count cart_tickets form-control buyable-count';"
                  tal:attributes="class css;
-                                 disabled python: not addable and 'disabled' or None" />
-        </dd>
-      </tal:comment>
+                                 disabled python: not addable and 'disabled' or None">
 
-    </tal:buy>
-  </dl>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+          
+          </select>
+        </div>
 
-  <tal:buy condition="view/can_buy_items">
-    <span tal:condition="view/can_buy_items"
-          class="cart_item_uid"
-          style="display: none;"
-          tal:content="view/item_uid">12345678</span>
+        <tal:comment condition="view/comment_enabled">
+          <dt class="extra_comment" i18n:translate="comment">Comment</dt>
+          <dd class="extra_comment">
+            <input type="text"
+                   size="20"
+                   value=""
+                   class="cart_item_comment"
+                   tal:define="css python: view.comment_required and \
+                                           'cart_item_comment required' or
+                                           'cart_item_comment';"
+                   tal:attributes="class css;
+                                   disabled python: not addable and 'disabled' or None" />
+          </dd>
+        </tal:comment>
 
-    <tal:addable condition="addable"
+      </tal:buy>
+      <tal:buy condition="view/can_buy_items">
+      
+        <span tal:condition="view/can_buy_items"
+              class="cart_item_uid"
+              style="display: none;"
+              tal:content="view/item_uid">12345678</span>
+
+        <tal:addable condition="addable"
           tal:define="signal string:${view/availability_signal}">
           <a href=""
              class="add_cart_item buyable_add_to_cart show_status_message"
@@ -131,10 +134,13 @@
 
         </tal:addable>
 
-    <tal:not_addable condition="not:addable">
-      <a href=""
-         class="buy_now_item buyable_update_cart show_status_message unavailable"
-         i18n:translate="product_unavailable">product unavailable</a>
-    </tal:not_addable>
-  </tal:buy>
+        <tal:not_addable condition="not:addable">
+          <a href=""
+             class="buy_now_item buyable_update_cart show_status_message unavailable"
+             i18n:translate="product_unavailable">product unavailable</a>
+        </tal:not_addable>
+    
+      </tal:buy>
+  </dl>
+
 </div>
