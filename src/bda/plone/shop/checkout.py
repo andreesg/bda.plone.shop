@@ -8,6 +8,10 @@ from zope.component import adapter
 from zope.interface import implementer
 from zope.interface import Interface
 
+# TODO Changed
+
+from bda.plone.orders import interfaces as ifaces
+from bda.plone.orders.common import get_orders_soup
 
 @implementer(ICheckoutSettings)
 @adapter(Interface)
@@ -21,7 +25,12 @@ class CheckoutSettings(object):
         order_data = OrderData(self.context, uid=uid)
         # order total is 0, skip
         if not Decimal(str(order_data.total)).quantize(Decimal('1.000')):
+            orders_soup = get_orders_soup(self.context)
+            order_data.order.attrs['salaried'] = ifaces.SALARIED_YES
+            order_data.salaried = ifaces.SALARIED_YES
+            orders_soup.reindex(records=[order_data.order])
             return True
+        
         # if payment should be skipped if order contains reservations and
         # order contains reservations, skip
         if settings.skip_payment_if_order_contains_reservations:
@@ -30,5 +39,6 @@ class CheckoutSettings(object):
         return False
 
     def skip_payment_redirect_url(self, uid):
-        base = '%s/@@order_done?uid=%s'
+        base = '%s/@@mollie_payment_success?order_uid=%s'
         return base % (self.context.absolute_url(), uid)
+
