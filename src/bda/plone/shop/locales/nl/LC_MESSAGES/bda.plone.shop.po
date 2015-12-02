@@ -1119,3 +1119,7 @@ msgstr "BTW"
 msgid "yes"
 msgstr "Ja"
 
+#: browser/buyable.pt:115
+msgid "buy_now"
+msgstr "Bestel nu"
+

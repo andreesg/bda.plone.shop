@@ -5,6 +5,7 @@
 
   <i18n:registerTranslations directory="locales" />
 
+  <!-- TODO Changed -->
   <!--
     Set this interface on desired content class in order to enable content
     action turning object into buyable.
@@ -63,6 +64,9 @@
 
   <!-- default shipping -->
   <adapter name="default_shipping" factory=".shipping.DefaultShipping" />
+
+  <!-- promotion shipping -->
+  <adapter name="promotion_shipping" factory=".shipping.PromotionShipping" />
 
   <!-- cash and carry shipping -->
   <adapter name="cash_and_carry" factory=".shipping.CashAndCarryShipping" />

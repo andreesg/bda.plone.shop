@@ -20,6 +20,7 @@ from bda.plone.shop.utils import get_shop_shipping_settings
 from bda.plone.shop import permissions
 from bda.plone.shop import message_factory as _
 
+## TODO Changed
 
 class CartItemCalculator(object):
     """Object for calculating cart item related data.
@@ -252,8 +253,13 @@ class CartDataProvider(CartItemCalculator, CartDataProviderBase):
             title = data.title
             discount_net = data.discount_net(count)
             price = (Decimal(str(data.net)) - discount_net) * count
+
+            original_price = (Decimal(str(data.net)) - discount_net) * 1
+
             if data.display_gross:
                 price = price + price / Decimal(100) * Decimal(str(data.vat))
+                original_price = original_price + original_price / Decimal(100) * Decimal(str(data.vat))
+
             url = brain.getURL()
             description = brain.Description
             comment_required = data.comment_required
@@ -263,10 +269,12 @@ class CartDataProvider(CartItemCalculator, CartDataProviderBase):
             item_state = get_item_state(obj, self.request)
             no_longer_available = not item_state.validate_count(count)
             alert = item_state.alert(count)
+            
             item = self.item(
                 uid, title, count, price, url, comment, description,
                 comment_required, quantity_unit_float, quantity_unit,
-                preview_image_url, no_longer_available, alert)
+                preview_image_url, no_longer_available, alert, original_price)
+
             ret.append(item)
         return ret
 
