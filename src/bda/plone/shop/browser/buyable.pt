@@ -10,7 +10,6 @@
                      class string:buyable ${css}">
 
   <tal:info condition="view/can_view_buyable_info">
-  </div>
 
   </tal:info>
 
