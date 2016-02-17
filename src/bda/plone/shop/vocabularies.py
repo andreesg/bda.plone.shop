@@ -61,7 +61,7 @@ AVAILABLE_VAT_VALUES = {
     '20': '20%',
     '21': '21%',
     '25': '25%'
-
+}
 
 @provider(IVocabularyFactory)
 def AvailableVatVocabulary(context):
