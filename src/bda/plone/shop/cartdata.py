@@ -123,6 +123,7 @@ class CartDataProvider(CartItemCalculator, CartDataProviderBase):
     def __init__(self, context, request):
         self.context = context
         self.request = request
+        self.billing_country = ""
 
     @property
     def currency(self):

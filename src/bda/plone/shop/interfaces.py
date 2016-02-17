@@ -288,6 +288,8 @@ class IShopShippingSettings(model.Schema):
             'shipping_limit_from_gross',
             'free_shipping_limit',
             'flat_shipping_cost',
+            'eu_shipping_cost',
+            'noneu_shipping_cost',
             'item_shipping_cost',
         ],
     )
@@ -362,6 +364,22 @@ class IShopShippingSettings(model.Schema):
         default=10.0
     )
 
+    eu_shipping_cost = schema.Float(
+        title=_(u"label_eu_shipping_cost", default=u"Within EU shipping cost"),
+        description=_(u"help_eu_shipping_cost",
+                      default=u"Shipping costs for countries within EU"),
+        required=False,
+        default=10.0
+    )
+
+    noneu_shipping_cost = schema.Float(
+        title=_(u"label_noneu_shipping_cost", default=u"Outside of EU shipping cost"),
+        description=_(u"help_noneu_shipping_cost",
+                      default=u"Shipping costs for countries outside of EU"),
+        required=False,
+        default=10.0
+    )
+
     item_shipping_cost = schema.Float(
         title=_(u"label_item_shipping_cost", default=u"Item shipping cost"),
         description=_(u"help_item_shipping_cost",
@@ -372,6 +390,8 @@ class IShopShippingSettings(model.Schema):
         required=True,
         default=0.0
     )
+
+
 
 
 @provider(IShopSettingsProvider)
