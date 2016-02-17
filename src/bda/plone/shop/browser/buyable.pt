@@ -20,25 +20,6 @@
                  define="price_original view/item_net_original;
                          price view/item_net">
           
-          <dd class="price original"
-              tal:define="currency view/currency"
-              tal:condition="python:view.not_eq(price_original, price)">
-            <h2><span tal:replace="python: '€' if currency == 'EUR' else currency">EUR</span>
-            <span tal:replace="python:'%0.2f' % price_original">1.00</span></h2>
-          </dd>
-
-          <dd class="price discount"
-            tal:define="currency view/currency">
-            <h2><span tal:replace="python: '€' if currency == 'EUR' else currency">EUR</span>
-            <span tal:replace="python:'%0.2f' % view.item_net">1.00</span></h2>
-          </dd>
-        </tal:net>
-
-        <tal:gross condition="view/display_gross"
-                 define="price_original view/item_gross_original;
-                         price view/item_gross">
-          
-          
 
           <dd class="price original"
               tal:define="currency view/currency;

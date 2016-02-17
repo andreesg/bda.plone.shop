@@ -60,8 +60,7 @@ AVAILABLE_VAT_VALUES = {
     '15': '15%',
     '20': '20%',
     '21': '21%',
-    '25': '25%',
-}
+    '25': '25%'
 
 
 @provider(IVocabularyFactory)

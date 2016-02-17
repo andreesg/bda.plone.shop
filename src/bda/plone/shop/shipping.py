@@ -49,6 +49,9 @@ class DefaultShipping(Shipping):
         shipping_limit_from_gross = settings.shipping_limit_from_gross
         free_shipping_limit = Decimal(str(settings.free_shipping_limit))
         flat_shipping_cost = Decimal(str(settings.flat_shipping_cost))
+        eu_shipping_cost = Decimal(str(settings.eu_shipping_cost))
+        noneu_shipping_cost = Decimal(str(settings.noneu_shipping_cost))
+
         item_shipping_cost = Decimal(str(settings.item_shipping_cost))
         shipping_vat = Decimal(str(settings.shipping_vat))
 
@@ -58,6 +61,7 @@ class DefaultShipping(Shipping):
         # no shipping costs
         if not flat_shipping_cost and not item_shipping_cost:
             return _(u"free_shipping", default=u"Free Shipping")
+        
         # no free shipping limit
         if not free_shipping_limit:
             # flat and item costs defined
@@ -148,7 +152,8 @@ class DefaultShipping(Shipping):
                 'currency': currency,
             })
 
-    def net(self, items):
+    def net(self, items, shipping_type=""):
+
         settings = get_shop_shipping_settings()
         calc = CartItemCalculator(self.context)
         shipping_limit_from_gross = settings.shipping_limit_from_gross
@@ -164,6 +169,14 @@ class DefaultShipping(Shipping):
         if free_shipping_limit and purchase_price > free_shipping_limit:
             return Decimal(0)
         flat_shipping_cost = Decimal(str(settings.flat_shipping_cost))
+
+        if shipping_type == "eu":
+            flat_shipping_cost = Decimal(str(settings.eu_shipping_cost))
+        elif shipping_type == "non-eu":
+            flat_shipping_cost = Decimal(str(settings.noneu_shipping_cost))
+        else:
+            flat_shipping_cost = Decimal(str(settings.flat_shipping_cost))
+
         item_shipping_cost = Decimal(str(settings.item_shipping_cost))
         shipping_costs = Decimal(0)
         # item shipping costs set, calculate for contained cart items
@@ -182,10 +195,10 @@ class DefaultShipping(Shipping):
         # return calculated shipping costs
         return shipping_costs
 
-    def vat(self, items):
+    def vat(self, items, shipping_type=""):
         settings = get_shop_shipping_settings()
         shipping_vat = Decimal(str(settings.shipping_vat))
-        return self.net(items) / Decimal(100) * shipping_vat
+        return self.net(items, shipping_type) / Decimal(100) * shipping_vat
 
 
 class CashAndCarryShipping(Shipping):
@@ -212,7 +225,6 @@ class PromotionShipping(DefaultShipping):
     def description(self):
         return _('promotion_shipping_label',
                  default='Geldig t/m 31 december')
-
 
 ###############################################################################
 # B/C - will be removed in ``bda.plone.shop`` 1.0

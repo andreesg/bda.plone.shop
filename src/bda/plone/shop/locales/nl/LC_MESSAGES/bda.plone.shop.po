@@ -1109,6 +1109,16 @@ msgstr "Tekst"
 msgid "update_cart"
 msgstr "Updaten winkelwagen"
 
+#. Default: "buy now"
+#: browser/buyable.pt:120
+msgid "buy_now"
+msgstr "Bestel nu"
+
+#. Default: "product unavailable"
+#: ./browser/buyable.pt:116
+msgid "product_unavailable"
+msgstr "Product niet beschikbaar"
+
 #. Default: "Vat"
 #: bda/plone/shop/browser/buyable.pt:63
 msgid "vat"

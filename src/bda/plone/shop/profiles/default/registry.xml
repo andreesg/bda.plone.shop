@@ -45,6 +45,8 @@
     <value key="shipping_limit_from_gross" purge="false">True</value>
     <value key="free_shipping_limit" purge="false">200.0</value>
     <value key="flat_shipping_cost" purge="false">10.0</value>
+    <value key="eu_shipping_cost" purge="false">10.0</value>
+    <value key="noneu_shipping_cost" purge="false">10.0</value>
     <value key="item_shipping_cost" purge="false">0.0</value>
   </records>
 
@@ -57,9 +59,10 @@
       <element>10</element>
       <element>15</element>
       <element>20</element>
+      <element>21</element>
       <element>25</element>
     </value>
-    <value key="default_item_vat" purge="false">20</value>
+    <value key="default_item_vat" purge="false">21</value>
   </records>
 
   <records interface="bda.plone.shop.interfaces.INotificationTextSettings">

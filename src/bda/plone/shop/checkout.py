@@ -7,10 +7,9 @@ from bda.plone.shop.utils import get_shop_payment_settings
 from zope.component import adapter
 from zope.interface import implementer
 from zope.interface import Interface
-
-# TODO Changed
-
 from bda.plone.orders import interfaces as ifaces
+import transaction
+
 from bda.plone.orders.common import get_orders_soup
 
 @implementer(ICheckoutSettings)
@@ -23,6 +22,7 @@ class CheckoutSettings(object):
     def skip_payment(self, uid):
         settings = get_shop_payment_settings()
         order_data = OrderData(self.context, uid=uid)
+        
         # order total is 0, skip
         if not Decimal(str(order_data.total)).quantize(Decimal('1.000')):
             orders_soup = get_orders_soup(self.context)

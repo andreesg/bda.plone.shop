@@ -127,6 +127,7 @@ class CartDataProvider(CartItemCalculator, CartDataProviderBase):
     def __init__(self, context, request):
         self.context = context
         self.request = request
+        self.billing_country = ""
 
     @property
     def currency(self):
@@ -277,7 +278,7 @@ class CartDataProvider(CartItemCalculator, CartDataProviderBase):
                 uid, title, count, price, url, comment, description,
                 comment_required, quantity_unit_float, quantity_unit,
                 preview_image_url, no_longer_available, alert, original_price)
-
+            
             ret.append(item)
         return ret
 
@@ -315,6 +316,7 @@ class CartItemState(CartItemStateBase):
 
     def alert(self, count):
         stock = get_item_stock(self.context)
+
         available = stock.available
         # no limitation
         if available is None:
