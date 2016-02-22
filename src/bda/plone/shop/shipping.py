@@ -153,6 +153,7 @@ class DefaultShipping(Shipping):
             })
 
     def net(self, items, shipping_type=""):
+        is_ticket_system = "tickets" in self.context.absolute_url()
 
         settings = get_shop_shipping_settings()
         calc = CartItemCalculator(self.context)
@@ -179,6 +180,9 @@ class DefaultShipping(Shipping):
 
         item_shipping_cost = Decimal(str(settings.item_shipping_cost))
         shipping_costs = Decimal(0)
+        
+        if is_ticket_system:
+            return shipping_costs
         # item shipping costs set, calculate for contained cart items
         if item_shipping_cost > Decimal(0):
             for item in items:
