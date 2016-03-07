@@ -39,6 +39,9 @@ class CheckoutSettings(object):
         return False
 
     def skip_payment_redirect_url(self, uid):
+        orders_soup = get_orders_soup(self.context)
+        order_data = OrderData(self.context, uid=uid)
+        orders_soup.reindex(records=[order_data.order])
         base = '%s/@@mollie_payment_success?order_uid=%s'
         return base % (self.context.absolute_url(), uid)
 
