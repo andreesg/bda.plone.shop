@@ -130,6 +130,10 @@ def default_item_cart_count_limit(context):
 def default_item_quantity_unit(context):
     return lambda: get_shop_article_settings().default_item_quantity_unit
 
+@implementer(IFieldDefaultProvider)
+@adapter(IBuyable)
+def default_item_stock_warning_threshold(context):
+    return lambda: get_shop_article_settings().default_item_stock_warning_threshold
 
 class BuyableExtender(ExtenderBase):
     """Schema extender for buyable items.
@@ -291,6 +295,14 @@ class StockExtender(ExtenderBase):
                         default=u'Item stock overbook'),
             ),
         ),
+        XFloatField(
+            name='item_stock_warning_threshold',
+            schemata='Shop',
+            widget=FloatField._properties['widget'](
+                label=_(u'label_stock_warning_threshold',
+                        default=u'Item stock warning threshold.'),
+            ),
+        ),
     ]
 
 
@@ -322,6 +334,14 @@ class ATCartItemStock(object):
         set_field_value(self.context, 'item_overbook', value)
 
     overbook = property(_get_overbook, _set_overbook)
+
+    def _get_stock_warning_threshold(self):
+        return field_value(self.context, 'item_minimum_stock')
+
+    def _set_stock_warning_threshold(self, value):
+        set_field_value(self.context, 'item_stock_warning_threshold', value)
+
+    stock_warning_threshold = property(_get_stock_warning_threshold, _set_stock_warning_threshold)
 
 
 @implementer(IFieldDefaultProvider)

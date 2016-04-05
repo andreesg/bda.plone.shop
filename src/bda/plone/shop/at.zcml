@@ -55,6 +55,10 @@
       provides="archetypes.schemaextender.interfaces.IOrderableSchemaExtender" />
 
   <adapter
+       name="item_stock_warning_threshold"
+       factory=".at.default_item_stock_warning_threshold" />
+
+  <adapter
       name="shipping_item_shippable"
       factory=".at.default_shipping_item_shippable" />
 

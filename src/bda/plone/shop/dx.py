@@ -64,6 +64,13 @@ def default_item_cart_count_limit(context):
 def default_item_quantity_unit(context):
     return get_shop_article_settings().default_item_quantity_unit
 
+@provider(IContextAwareDefaultFactory)
+def default_item_minimum_stock(context):
+    return get_shop_article_settings().default_item_minimum_stock
+
+@provider(IContextAwareDefaultFactory)
+def default_item_stock_warning_threshold(context):
+    return get_shop_article_settings().default_item_stock_warning_threshold
 
 @provider(IFormFieldProvider)
 class IBuyableBehavior(model.Schema, IBuyable):
@@ -201,7 +208,7 @@ class IStockBehavior(model.Schema):
     model.fieldset(
         'shop',
         label=u"Shop",
-        fields=['item_display_stock', 'item_available', 'item_overbook']
+        fields=['item_display_stock', 'item_available', 'item_overbook', 'item_stock_warning_threshold']
     )
 
     item_display_stock = schema.Bool(
@@ -218,6 +225,12 @@ class IStockBehavior(model.Schema):
     item_overbook = schema.Float(
         title=_(u'label_item_overbook', default=u'Item stock overbook'),
         required=False
+    )
+
+    item_stock_warning_threshold = schema.Float(
+        title=_(u'label_item_stock_warning_threshold', default=u'Item stock warning threshold.'),
+        required=False,
+        defaultFactory=default_item_stock_warning_threshold
     )
 
 
@@ -249,6 +262,14 @@ class DXCartItemStock(object):
     @overbook.setter
     def overbook(self, value):
         self.context.item_overbook = value
+
+    @property
+    def stock_warning_threshold(self):
+        return self.context.stock_warning_threshold
+
+    @stock_warning_threshold.setter
+    def stock_warning_threshold(self, value):
+        self.context.item_stock_warning_threshold = value
 
 
 @provider(IContextAwareDefaultFactory)
