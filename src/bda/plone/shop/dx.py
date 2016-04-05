@@ -265,7 +265,7 @@ class DXCartItemStock(object):
 
     @property
     def stock_warning_threshold(self):
-        return self.context.stock_warning_threshold
+        return self.context.item_stock_warning_threshold
 
     @stock_warning_threshold.setter
     def stock_warning_threshold(self, value):
