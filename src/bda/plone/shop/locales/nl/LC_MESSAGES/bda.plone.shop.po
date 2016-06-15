@@ -419,7 +419,7 @@ msgstr "Voeg geen verzendkosten toe aan bestellingen met een hogere prijs dan he
 
 #: bda/plone/shop/user/userdata.py:42
 msgid "help_gender"
-msgstr "Geslacht"
+msgstr "Aanhef"
 
 #. Default: "Global Trade Item Number"
 #: bda/plone/shop/at.py:597
@@ -678,7 +678,7 @@ msgstr "Limiet gratis verzending"
 #. Default: "Gender"
 #: bda/plone/shop/user/userdata.py:41
 msgid "label_gender"
-msgstr "Geslacht"
+msgstr "Aanhef"
 
 #. Default: "GTIN"
 #: bda/plone/shop/at.py:596
