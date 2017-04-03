@@ -22,6 +22,8 @@ from zope.i18n import translate
 import warnings
 
 
+""" CUSTOM """
+
 class CartItemCalculator(object):
     """Object for calculating cart item related data.
     """
@@ -277,10 +279,15 @@ class CartDataProvider(CartItemCalculator, CartDataProviderBase):
             discount_net = data.discount_net(count)
             price = (Decimal(str(data.net)) - discount_net) * count
             discount = discount_net * count
+
+            original_price = (Decimal(str(data.net)) - discount_net) * 1
+
             if data.display_gross:
                 price = price + price / Decimal(100) * Decimal(str(data.vat))
                 discount = \
                     discount + discount / Decimal(100) * Decimal(str(data.vat))
+                original_price = original_price + original_price / Decimal(100) * Decimal(str(data.vat))
+                
             url = obj.absolute_url()
             description = obj.Description()
             comment_required = data.comment_required
@@ -304,7 +311,8 @@ class CartDataProvider(CartItemCalculator, CartDataProviderBase):
                 preview_image_url=preview_image_url,
                 no_longer_available=no_longer_available,
                 alert=alert,
-                discount=discount * Decimal(-1) if discount else Decimal(0)
+                discount=discount * Decimal(-1) if discount else Decimal(0),
+                original_price=original_price
             ))
         return ret
 

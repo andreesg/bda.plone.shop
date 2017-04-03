@@ -483,7 +483,7 @@ msgstr "Voeg geen verzendkosten toe aan bestellingen met een hogere prijs dan he
 
 #: ./user/userdata.py:41
 msgid "help_gender"
-msgstr "Geslacht"
+msgstr "Aanhef"
 
 #. Default: "Global Trade Item Number"
 #: ./at.py:659
@@ -764,7 +764,7 @@ msgstr "Limiet gratis verzending"
 #. Default: "Gender"
 #: ./user/userdata.py:40
 msgid "label_gender"
-msgstr "Geslacht"
+msgstr "Aanhef"
 
 #. Default: "GTIN"
 #: ./at.py:658

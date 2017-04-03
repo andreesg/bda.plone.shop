@@ -152,6 +152,7 @@
 
   <!-- shop navigation links -->
   <adapter name="orders" factory=".navigation.OrdersLink" />
+  <adapter name="tours" factory=".navigation.ToursLink" />
   <adapter name="orders_in_context" factory=".navigation.OrdersInContextLink" />
   <adapter name="orders_in_container" factory=".navigation.OrdersInContainerLink" />
   <adapter name="myorders" factory=".navigation.MyOrdersLink" />

@@ -210,11 +210,35 @@ class ShopNavigation(NavigationItemLookupMixin):
 # orders related
 ###############################################################################
 
+
 class OrdersGroup(ShopNavigationGroup):
     id = 'shop_orders_group'
     title = _('orders', default=u'Orders')
     order = 10
 
+class ToursLink(ShopNavigationLink):
+    """Link for navigating to ``Global Orders`` view.
+    """
+    id = 'shop_tours_link'
+    group = 'shop_orders_group'
+    permission = VIEW_ORDERS
+    order = 10
+    cssclass = 'orders'
+
+    def __init__(self, context, request):
+        # acquire desired context
+        context = self.acquire_context(context, interfaces=[IVendor, ISite])
+        # call super class constructor
+        super(ToursLink, self).__init__(context, request)
+        # check if authenticated user is vendor
+        if self.display and not get_vendors_for():
+            self.display = False
+            return
+
+        self.title = _('tours', default=u'Tours')
+        
+        # set target URL
+        self.url = '{}/@@tours'.format(context.absolute_url())
 
 class OrdersLink(ShopNavigationLink):
     """Link for navigating to ``Global Orders`` view.
@@ -222,7 +246,7 @@ class OrdersLink(ShopNavigationLink):
     id = 'shop_orders_link'
     group = 'shop_orders_group'
     permission = VIEW_ORDERS
-    order = 10
+    order = 11
     cssclass = 'orders'
 
     def __init__(self, context, request):
@@ -255,7 +279,7 @@ class OrdersInContextLink(ShopNavigationLink):
     group = 'shop_orders_group'
     permission = VIEW_ORDERS
     title = _('orders_in_context', default=u'Orders in Context')
-    order = 11
+    order = 12
     cssclass = 'orders'
 
     def __init__(self, context, request):
@@ -286,7 +310,7 @@ class OrdersInContainerLink(OrdersInContextLink):
     id = 'shop_orders_in_container_link'
     group = 'shop_orders_group'
     title = _('orders_in_container', default=u'Orders in Container')
-    order = 12
+    order = 13
 
     def __init__(self, context, request):
         # check whether context is default page in folder
@@ -311,7 +335,7 @@ class MyOrdersLink(ShopNavigationLink):
     group = 'shop_orders_group'
     permission = VIEW_OWN_ORDERS
     title = _('my_orders', default=u'My Orders')
-    order = 13
+    order = 14
     cssclass = 'myorders'
 
     def __init__(self, context, request):
