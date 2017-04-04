@@ -238,7 +238,7 @@ class ToursLink(ShopNavigationLink):
         self.title = _('tours', default=u'Tours')
         
         # set target URL
-        self.url = '{}/@@tours'.format(context.absolute_url())
+        self.url = '{}/@@orderstours'.format(context.absolute_url())
 
 class OrdersLink(ShopNavigationLink):
     """Link for navigating to ``Global Orders`` view.
