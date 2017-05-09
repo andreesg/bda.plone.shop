@@ -40,6 +40,14 @@ class NotificationSettings(object):
             getattr(props.site_properties, 'email_from_name', '')
         )
 
+    @property
+    def notification_emails(self):
+        props = api.portal.get_tool('portal_properties')
+        return (
+            get_shop_settings().notification_emails or
+            getattr(props.site_properties, 'email_from_address', '')
+        )
+
 
 @implementer(IItemNotificationText)
 @adapter(IContained)

@@ -69,6 +69,13 @@ class IShopSettings(model.Schema):
         default=""
     )
 
+    notification_emails = schema.ASCIILine(
+        title=_(u"Lorentz Lab notification email", default=u'Lorentz Lab email'),
+        description=_(u"List of e-mails to be notified with the Lorentz lab bookings", default=u'List of e-mails to be notified with the Lorentz lab bookings'),
+        required=False,
+        default=""
+    )
+
     add_customer_role_to_new_users = schema.Bool(
         title=_(
             u'label_add_customer_role_to_new_users',
